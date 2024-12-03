@@ -1,0 +1,19 @@
+uuid: 31e20bec-a7d6-4508-b43d-36c7b64488f5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_d11
+    - node.type.page
+id: node.page.field_d11
+field_name: field_d11
+entity_type: node
+bundle: page
+label: d11
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

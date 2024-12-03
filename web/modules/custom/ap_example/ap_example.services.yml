@@ -1,0 +1,9 @@
+services:
+  access_policy_pirate_day:
+    class: Drupal\ap_example\Access\PirateDayAccessPolicy
+    tags:
+      - { name: access_policy }
+  cache_context.pirate_day:
+    class: Drupal\ap_example\Cache\PirateDayCacheContext
+    tags:
+      - { name: cache.context }
