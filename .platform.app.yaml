@@ -40,10 +40,6 @@ mounts:
     '/private':
         source: local
         source_path: 'private'
-    # Drush needs a scratch space for its own caches.
-    '/.drush':
-        source: local
-        source_path: 'drush'
     # Drush will try to save backups to this directory, so it must be
     # writeable even though you will almost never need to use it.
     '/drush-backups':
@@ -168,14 +164,18 @@ hooks:
     # The site is not accepting requests while this script runs so keep it
     # fast.
     deploy: |
-        set -e
-        php ./drush/platformsh_generate_drush_yml.php
+        # set -e
+        # php ./drush/platformsh_generate_drush_yml.php
         # if drupal is installed, will call the following drush commands:
         #   - `cache-rebuild`
         #   - `updatedb`
         #   - and if config files are present, `config-import`
+        # cd web
+        # bash $PLATFORM_APP_DIR/drush/platformsh_deploy_drupal.sh
         cd web
-        bash $PLATFORM_APP_DIR/drush/platformsh_deploy_drupal.sh
+        drush -y cache-rebuild
+        drush -y updatedb
+        drush -y cim
 
     # The post_deploy hook is run after the app container has been started and after it has started accepting requests.
     # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
